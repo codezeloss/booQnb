@@ -70,7 +70,10 @@
   * {
     @apply border-border;
   }
+  :root {
+    @apply h-full;
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground w-full h-full;
   }
 }
