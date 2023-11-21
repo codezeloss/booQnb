@@ -18,17 +18,22 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import Modal from "@/components/ui/modal";
-import axios from "axios";
-import { onClickLoginClose } from "@/redux/modalSlice";
+import { onClickRegisterClose } from "@/redux/modalSlice";
 import { useDispatch } from "react-redux";
+import axios from "axios";
+import AuthButton from "@/components/ui/auth-button";
+import { signIn } from "next-auth/react";
 
 // !! Form Schema
 const formSchema = z.object({
   email: z.string({
-    required_error: "Title is required",
+    required_error: "Email is required",
+  }),
+  name: z.string({
+    required_error: "Name is required",
   }),
   password: z.string({
-    required_error: "Title is required",
+    required_error: "Password is required",
   }),
 });
 
@@ -38,7 +43,7 @@ interface Props {
   onClose: () => void;
 }
 
-export function SignInFormModal({ isOpen, onClose }: Props) {
+export function SignUpFormModal({ isOpen, onClose }: Props) {
   const { toast } = useToast();
   const router = useRouter();
   const dispatch = useDispatch();
@@ -51,6 +56,7 @@ export function SignInFormModal({ isOpen, onClose }: Props) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
+      name: "",
       password: "",
     },
   });
@@ -59,12 +65,12 @@ export function SignInFormModal({ isOpen, onClose }: Props) {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setIsLoading(true);
-      const response = await axios.post(`/api/login`, values);
+      const response = await axios.post(`/api/register`, values);
       if (response.data) {
         form.reset();
-        dispatch(onClickLoginClose());
+        dispatch(onClickRegisterClose());
         toast({
-          description: "Login successfully",
+          description: "Account created successfully",
         });
         router.refresh();
       }
@@ -74,7 +80,7 @@ export function SignInFormModal({ isOpen, onClose }: Props) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: "Cannot login to your account, please try again!",
+        description: "Cannot create new account, please try again!",
       });
     } finally {
       setIsLoading(false);
@@ -90,8 +96,8 @@ export function SignInFormModal({ isOpen, onClose }: Props) {
 
   return (
     <Modal
-      title="Sign In"
-      description="Login to your BooQnb account"
+      title="Welcome to BooQnb"
+      description="Create your new BooQnb account"
       isOpen={isOpen}
       onClose={onClose}
     >
@@ -113,21 +119,52 @@ export function SignInFormModal({ isOpen, onClose }: Props) {
 
           <FormField
             control={form.control}
-            name="password"
+            name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-bold">Password</FormLabel>
+                <FormLabel className="font-bold">Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="********" type="password" {...field} />
+                  <Input placeholder="Zoubir Alim" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <Button className="font-bold" disabled={isLoading} type="submit">
-            Login
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="font-bold">Password</FormLabel>
+                <FormControl>
+                  <Input placeholder="*********" type="password" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button
+            className="w-full text-center font-bold"
+            disabled={isLoading}
+            type="submit"
+          >
+            Register
           </Button>
+
+          <div className="space-y-2 pt-4">
+            <AuthButton
+              icon="/icons/google-icon.svg"
+              title="Continue with Google"
+              onClickHandler={() => signIn("google")}
+            />
+            <AuthButton
+              icon="/icons/github-icon.svg"
+              title="Continue with Github"
+              onClickHandler={() => signIn("github")}
+            />
+          </div>
         </form>
       </Form>
     </Modal>

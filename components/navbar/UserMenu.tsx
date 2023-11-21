@@ -9,8 +9,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Image from "next/image";
-import ProfileMenu from "@/components/Navbar/ProfileMenu";
-import { SignInFormModal } from "@/components/SignInFormModal";
+import ProfileMenu from "@/components/navbar/ProfileMenu";
+import { SignInFormModal } from "@/components/modals/SignInFormModal";
 import { useDispatch, useSelector } from "react-redux";
 import {
   onClickLoginClose,
@@ -18,9 +18,14 @@ import {
   onClickRegisterClose,
   onClickRegisterOpen,
 } from "@/redux/modalSlice";
-import { SignUpFormModal } from "@/components/SignUpFormModal";
+import { SignUpFormModal } from "@/components/modals/SignUpFormModal";
+import { User } from "@prisma/client";
 
-export default function UserMenu() {
+interface Props {
+  currentUser?: User;
+}
+
+export default function UserMenu({ currentUser }: Props) {
   const dispatch = useDispatch();
 
   // ** RTK - Modal
@@ -41,26 +46,24 @@ export default function UserMenu() {
       />
 
       <div className="flex items-center gap-x-4">
-        <div className="flex items-center gap-x-2">
-          <Button
-            variant="secondary"
-            size="default"
-            onClick={() => dispatch(onClickLoginOpen())}
-          >
-            Sign In
-          </Button>
-          <Button
-            variant="default"
-            size="default"
-            onClick={() => dispatch(onClickRegisterOpen())}
-          >
-            Sign up
-          </Button>
-        </div>
-
-        {false && (
-          <div>
-            <ProfileMenu />
+        {currentUser ? (
+          <ProfileMenu user={currentUser} />
+        ) : (
+          <div className="flex items-center gap-x-2">
+            <Button
+              variant="secondary"
+              size="default"
+              onClick={() => dispatch(onClickLoginOpen())}
+            >
+              Sign In
+            </Button>
+            <Button
+              variant="default"
+              size="default"
+              onClick={() => dispatch(onClickRegisterOpen())}
+            >
+              Sign up
+            </Button>
           </div>
         )}
       </div>
