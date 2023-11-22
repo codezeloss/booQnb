@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import Modal from "@/components/ui/modal";
-import { onClickRegisterClose } from "@/redux/modalSlice";
+import { onClickLoginOpen, onClickRegisterClose } from "@/redux/modalSlice";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import AuthButton from "@/components/ui/auth-button";
@@ -164,6 +164,19 @@ export function SignUpFormModal({ isOpen, onClose }: Props) {
               title="Continue with Github"
               onClickHandler={() => signIn("github")}
             />
+          </div>
+
+          <div className="flex items-center text-xs justify-center gap-x-2 py-2">
+            <p className="text-muted-foreground">Already have an account ?</p>
+            <p
+              className="font-bold bg-transparent cursor-pointer hover:underline"
+              onClick={() => {
+                dispatch(onClickRegisterClose());
+                dispatch(onClickLoginOpen());
+              }}
+            >
+              Login
+            </p>
           </div>
         </form>
       </Form>

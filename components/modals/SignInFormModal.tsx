@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import Modal from "@/components/ui/modal";
-import { onClickLoginClose } from "@/redux/modalSlice";
+import { onClickLoginClose, onClickRegisterOpen } from "@/redux/modalSlice";
 import { useDispatch } from "react-redux";
 import AuthButton from "@/components/ui/auth-button";
 import { signIn } from "next-auth/react";
@@ -151,6 +151,19 @@ export function SignInFormModal({ isOpen, onClose }: Props) {
               title="Continue with Github"
               onClickHandler={() => signIn("github")}
             />
+          </div>
+
+          <div className="flex items-center text-xs justify-center gap-x-2 py-2">
+            <p className="text-muted-foreground">First time using BooQnb ?</p>
+            <p
+              className="font-bold bg-transparent cursor-pointer hover:underline"
+              onClick={() => {
+                dispatch(onClickLoginClose());
+                dispatch(onClickRegisterOpen());
+              }}
+            >
+              Create an account
+            </p>
           </div>
         </form>
       </Form>

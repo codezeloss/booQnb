@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import {
   Dialog,
   DialogContent,
@@ -15,6 +15,9 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children?: React.ReactNode;
+  actionLabel?: string;
+  secondaryAction?: () => void;
+  secondaryActionLabel?: string;
 }
 
 export default function Modal({
@@ -23,6 +26,9 @@ export default function Modal({
   isOpen,
   onClose,
   children,
+  actionLabel,
+  secondaryAction,
+  secondaryActionLabel,
 }: ModalProps) {
   const onChange = (open: boolean) => {
     if (!open) onClose();

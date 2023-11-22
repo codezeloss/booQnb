@@ -20,9 +20,10 @@ import {
 } from "@/redux/modalSlice";
 import { SignUpFormModal } from "@/components/modals/SignUpFormModal";
 import { User } from "@prisma/client";
+import { SafeUser } from "@/types/SafeUser";
 
 interface Props {
-  currentUser?: User;
+  currentUser?: SafeUser | null;
 }
 
 export default function UserMenu({ currentUser }: Props) {

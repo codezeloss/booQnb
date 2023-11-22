@@ -5,11 +5,13 @@ import { createSlice } from "@reduxjs/toolkit";
 export interface ModalState {
   isLoginModalOpen: boolean;
   isRegisterModalOpen: boolean;
+  isRentModalOpen: boolean;
 }
 
 const initialState: ModalState = {
   isLoginModalOpen: false,
   isRegisterModalOpen: false,
+  isRentModalOpen: false,
 };
 
 export const modalSlice = createSlice({
@@ -28,6 +30,12 @@ export const modalSlice = createSlice({
     onClickRegisterClose: (state) => {
       state.isRegisterModalOpen = false;
     },
+    onClickRentModalOpen: (state) => {
+      state.isRentModalOpen = true;
+    },
+    onClickRentModalClose: (state) => {
+      state.isRentModalOpen = false;
+    },
   },
 });
 
@@ -36,6 +44,8 @@ export const {
   onClickLoginClose,
   onClickRegisterOpen,
   onClickRegisterClose,
+  onClickRentModalOpen,
+  onClickRentModalClose,
 } = modalSlice.actions;
 
 export default modalSlice.reducer;
