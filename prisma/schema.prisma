@@ -48,6 +48,7 @@ model Listing {
   userId        String   @db.ObjectId
   price         Int
   title         String
+  category      String
   description   String
   imageSrc      String
   roomCount     Int

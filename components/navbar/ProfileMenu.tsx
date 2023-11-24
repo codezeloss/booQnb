@@ -61,6 +61,7 @@ export default function ProfileMenu({ user }: Props) {
               className="w-full"
               variant="default"
               onClick={() => dispatch(onClickRentModalOpen())}
+              type="button"
             >
               BooQnb my Home
             </Button>
@@ -71,6 +72,7 @@ export default function ProfileMenu({ user }: Props) {
               variant="destructive"
               className="w-full flex items-center gap-x-2"
               onClick={() => signOut()}
+              type="button"
             >
               <LogOutIcon size={18} />
               Logout

@@ -32,6 +32,7 @@ export default function Navbar({ currentUser }: Props) {
                 variant="ghost"
                 size="sm"
                 onClick={() => dispatch(onClickRentModalOpen())}
+                type="button"
               >
                 BooQnb my Home
               </Button>
