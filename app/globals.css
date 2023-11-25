@@ -74,7 +74,7 @@
     @apply h-full;
   }
   body {
-    @apply bg-background text-foreground w-full h-full relative;
+    @apply bg-background text-foreground w-full h-full;
   }
 }
 

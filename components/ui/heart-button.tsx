@@ -1,5 +1,6 @@
 import { SafeUser } from "@/types/SafeUser";
 import { HeartIcon } from "lucide-react";
+import useFavorite from "@/hooks/useFavorite";
 
 interface Props {
   listingId: string;
@@ -7,20 +8,23 @@ interface Props {
 }
 
 export default function HeartButton({ listingId, currentUser }: Props) {
-  const hasFavorited = false;
-  const toggleFavorite = () => {};
+  const { hasFavorited, toggleFavorite } = useFavorite({
+    listingId,
+    currentUser,
+  });
 
   return (
-    <div
+    <button
+      type="button"
       className="relative hover:opacity-80 transition cursor-pointer"
       onClick={toggleFavorite}
     >
       <HeartIcon
         className={`${
-          hasFavorited ? "fill-rose-500 text-rose-500" : "fill-neutral-500/70"
+          hasFavorited ? "fill-rose-500 text-rose-500" : "text-white"
         } absolute -top-[2px] -right-[2px]`}
         size={24}
       />
-    </div>
+    </button>
   );
 }

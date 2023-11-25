@@ -1,8 +1,9 @@
 import Container from "@/components/Container";
 import EmptyState from "@/components/EmptyState";
 import getListings from "@/app/actions/getListings";
-import ListingCard from "@/components/ListingCard";
+import ListingCard from "@/components/listings/ListingCard";
 import getCurrentUser from "@/app/actions/getCurrentUser";
+import { SafeListing } from "@/types/SafeUser";
 
 export default async function Home() {
   const listings = await getListings();
@@ -17,7 +18,7 @@ export default async function Home() {
       <Container>
         <div className="pt-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
           {listings &&
-            listings.map((listing: any, index) => {
+            listings.map((listing: SafeListing, index) => {
               return (
                 <ListingCard
                   key={index}

@@ -1,13 +1,21 @@
 "use client";
 
-export default function Avatar() {
+import Image from "next/image";
+
+interface Props {
+  src: string | null | undefined;
+}
+
+export default function Avatar({ src }: Props) {
   return (
-    <Image
-      src=""
-      alt=""
-      className="rounded-full border cursor-pointer"
-      width={40}
-      height={40}
-    />
+    <>
+      <Image
+        src={src}
+        alt="User Avatar"
+        className="rounded-full border cursor-pointer"
+        width={35}
+        height={35}
+      />
+    </>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { SafeUser } from "@/types/SafeUser";
+import { SafeListing, SafeUser } from "@/types/SafeUser";
 import { Reservation } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import useCountries from "@/hooks/useCountries";
@@ -11,7 +11,7 @@ import HeartButton from "@/components/ui/heart-button";
 import { Button } from "@/components/ui/button";
 
 interface Props {
-  data: any;
+  data: SafeListing;
   reservation?: Reservation;
   disabled?: boolean;
   actionLabel?: string;
@@ -77,7 +77,7 @@ export default function ListingCard({
             alt="Listed Home image"
             fill
           />
-          <div className="absolute top-4 right-4">
+          <div className="absolute top-3 right-3">
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>

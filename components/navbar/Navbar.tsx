@@ -19,7 +19,7 @@ export default function Navbar({ currentUser }: Props) {
   const dispatch = useDispatch();
 
   return (
-    <header className="fixed w-full z-10 shadow-sm">
+    <header className="fixed w-full z-10 shadow-sm bg-white dark:bg-background">
       <div className="py-4 border-b">
         <Container>
           <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
