@@ -25,7 +25,7 @@ export default function Map({ center }: Props) {
       center={(center as L.LatLngExpression) || [51, -0.09]}
       zoom={center ? 4 : 2}
       scrollWheelZoom={false}
-      className="h-[35vh] rounded-md"
+      className="h-[35vh] rounded-md border"
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {center && (

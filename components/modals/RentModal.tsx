@@ -126,11 +126,11 @@ export default function RentModal({ isOpen, onClose }: Props) {
     return "Next";
   }, [step]);
 
-  const secondaryActionLabel = useMemo(() => {
-    if (step === STEPS.CATEGORY) {
-      return undefined;
-    }
-  }, [step]);
+  //const secondaryActionLabel = useMemo(() => {
+  //  if (step === STEPS.CATEGORY) {
+  //    return undefined;
+  //  }
+  // }, [step]);
 
   // **
 

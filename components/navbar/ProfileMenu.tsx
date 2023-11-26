@@ -19,6 +19,7 @@ import {
   onClickRentModalOpen,
 } from "@/redux/modalSlice";
 import RentModal from "@/components/modals/RentModal";
+import { useRouter } from "next/navigation";
 
 interface Props {
   user?: SafeUser | null;
@@ -26,6 +27,7 @@ interface Props {
 
 export default function ProfileMenu({ user }: Props) {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   // ** RTK - Rent Modal
   const { isRentModalOpen } = useSelector((state: any) => state.modal);
@@ -52,10 +54,18 @@ export default function ProfileMenu({ user }: Props) {
             {user ? user.name : "My Account"}
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>My trips</DropdownMenuItem>
-          <DropdownMenuItem>My favorites</DropdownMenuItem>
-          <DropdownMenuItem>My reservations</DropdownMenuItem>
-          <DropdownMenuItem>My properties</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => router.push("/trips")}>
+            My trips
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => router.push("/favorites")}>
+            My favorites
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => router.push("/reservations")}>
+            My reservations
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => router.push("/properties")}>
+            My properties
+          </DropdownMenuItem>
           <DropdownMenuItem>
             <Button
               className="w-full"

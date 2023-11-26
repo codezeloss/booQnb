@@ -1,7 +1,6 @@
 "use client";
 
-import { SafeListing, SafeUser } from "@/types/SafeUser";
-import { Reservation } from "@prisma/client";
+import { SafeListing, SafeReservation, SafeUser } from "@/types/SafeUser";
 import { useRouter } from "next/navigation";
 import useCountries from "@/hooks/useCountries";
 import React, { useCallback, useMemo } from "react";
@@ -12,7 +11,7 @@ import { Button } from "@/components/ui/button";
 
 interface Props {
   data: SafeListing;
-  reservation?: Reservation;
+  reservation?: SafeReservation;
   disabled?: boolean;
   actionLabel?: string;
   actionId?: string;
@@ -77,7 +76,7 @@ export default function ListingCard({
             alt="Listed Home image"
             fill
           />
-          <div className="absolute top-3 right-3">
+          <div className="absolute top-0.5 right-5">
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
@@ -91,14 +90,21 @@ export default function ListingCard({
         </div>
 
         <div className="flex items-end gap-1">
-          <div className="text-lg font-bold">$ {price}</div>
+          <div className="text-lg font-extrabold">$ {price}</div>
           {!reservation && (
-            <div className="font-light text-sm mb-0.5">/ night</div>
+            <div className="font-normal text-xs mb-1 text-neutral-500 dark:text-muted-foreground">
+              / night
+            </div>
           )}
         </div>
 
         {onAction && actionLabel && (
-          <Button disabled={disabled} size="sm" onClick={handleCancel}>
+          <Button
+            disabled={disabled}
+            size="default"
+            variant="destructive"
+            onClick={handleCancel}
+          >
             {actionLabel}
           </Button>
         )}

@@ -6,12 +6,14 @@ export interface ModalState {
   isLoginModalOpen: boolean;
   isRegisterModalOpen: boolean;
   isRentModalOpen: boolean;
+  isSearchModalOpen: boolean;
 }
 
 const initialState: ModalState = {
   isLoginModalOpen: false,
   isRegisterModalOpen: false,
   isRentModalOpen: false,
+  isSearchModalOpen: false,
 };
 
 export const modalSlice = createSlice({
@@ -36,6 +38,12 @@ export const modalSlice = createSlice({
     onClickRentModalClose: (state) => {
       state.isRentModalOpen = false;
     },
+    onClickSearchModalOpen: (state) => {
+      state.isSearchModalOpen = true;
+    },
+    onClickSearchModalClose: (state) => {
+      state.isSearchModalOpen = false;
+    },
   },
 });
 
@@ -46,6 +54,8 @@ export const {
   onClickRegisterClose,
   onClickRentModalOpen,
   onClickRentModalClose,
+  onClickSearchModalOpen,
+  onClickSearchModalClose,
 } = modalSlice.actions;
 
 export default modalSlice.reducer;

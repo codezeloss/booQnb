@@ -31,6 +31,7 @@ export default function CategoryBox({ label, icon: Icon, selected }: Props) {
       delete updatedQuery.category;
     }
 
+    // ** Final URL
     const url = qs.stringifyUrl(
       {
         url: "/",

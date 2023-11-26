@@ -1,7 +1,7 @@
 "use client";
 
-import { Reservation } from "@prisma/client";
-import { SafeListing, SafeUser } from "@/types/SafeUser";
+import { SafeListing, SafeReservation, SafeUser } from "@/types/SafeUser";
+import { Range } from "react-date-range";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { categories } from "@/components/navbar/Categories";
 import ListingHead from "@/components/listings/ListingHead";
@@ -15,11 +15,11 @@ import { useToast } from "@/components/ui/use-toast";
 import ListingReservation from "@/components/listings/ListingReservation";
 
 interface Props {
-  reservations?: Reservation[];
+  currentUser?: SafeUser | null;
   listing: SafeListing & {
-    user: SafeUser | null | undefined;
+    user: any;
   };
-  currentUser?: SafeUser | null | undefined;
+  reservations?: SafeReservation[];
 }
 
 // !!
@@ -38,8 +38,12 @@ export default function ListingClient({
   const router = useRouter();
   const { toast } = useToast();
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(listing.price);
+  const [dateRange, setDateRange] = useState<Range>(initialDateRange);
+
   // ** Disable Date
-  const disableDate = useMemo(() => {
+  const disabledDate = useMemo(() => {
     let dates: Date[] = [];
 
     reservations.forEach((reservation: any) => {
@@ -54,9 +58,10 @@ export default function ListingClient({
     return dates;
   }, [reservations]);
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(listing.price);
-  const [dateRange, setDateRange] = useState(initialDateRange);
+  // ** Category
+  const category = useMemo(() => {
+    return categories.find((item) => item.label === listing.category);
+  }, [listing.category]);
 
   // ** Reservation creation
   const onCreateReservation = useCallback(() => {
@@ -73,10 +78,10 @@ export default function ListingClient({
       })
       .then(() => {
         toast({
-          description: "Listing reserved successfully!",
+          description: "Reserved successfully!",
         });
         setDateRange(initialDateRange);
-        router.refresh();
+        router.push("/trips");
       })
       .catch(() => {
         toast({
@@ -94,8 +99,8 @@ export default function ListingClient({
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
       const dayCount = differenceInCalendarDays(
-        dateRange.startDate,
-        dateRange.endDate
+        dateRange.endDate,
+        dateRange.startDate
       );
 
       if (dayCount && listing.price) {
@@ -105,11 +110,6 @@ export default function ListingClient({
       }
     }
   }, [dateRange, listing.price]);
-
-  // ** Category
-  const category = useMemo(() => {
-    return categories.find((item) => item.label === listing.category);
-  }, [listing.category]);
 
   return (
     <div className="max-w-screen-lg mx-auto">
@@ -136,11 +136,11 @@ export default function ListingClient({
             <ListingReservation
               price={listing.price}
               totalPrice={totalPrice}
-              onChange={(value) => setDateRange(value)}
+              onChangeDate={(value) => setDateRange(value)}
               dateRange={dateRange}
               onSubmit={onCreateReservation}
               disabled={isLoading}
-              disabledDates={disableDate}
+              disabledDates={disabledDate}
             />
           </div>
         </div>

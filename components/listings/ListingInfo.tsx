@@ -41,9 +41,9 @@ export default function ListingInfo({
   const coordinates = getByValue(locationValue)?.latlng;
 
   return (
-    <div className="flex flex-col col-span-4 gap-8">
+    <div className="flex flex-col col-span-4 gap-4">
       <div className="flex flex-col gap-2">
-        <div className="text-xl font-semibold flex row items-center gap-2">
+        <div className="text-lg font-semibold flex row items-center gap-2">
           <p className="">Hosted by {user?.name}</p>
           <Avatar src={user?.image} />
         </div>

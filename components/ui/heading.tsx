@@ -7,8 +7,8 @@ interface Props {
 export default function Heading({ title, subtitle, center }: Props) {
   return (
     <div className={`pb-4 ${center && "text-center"}`}>
-      <p className="font-extrabold text-lg">{title}</p>
-      <p className="text-sm text-muted-foreground font-bold">{subtitle}</p>
+      <p className="font-extrabold text-xl">{title}</p>
+      <p className="text-base text-muted-foreground font-bold">{subtitle}</p>
     </div>
   );
 }

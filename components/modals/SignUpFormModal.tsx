@@ -73,6 +73,7 @@ export function SignUpFormModal({ isOpen, onClose }: Props) {
           description: "Account created successfully",
         });
         router.refresh();
+        dispatch(onClickLoginOpen());
       }
       setIsLoading(false);
     } catch (e) {
