@@ -3,6 +3,7 @@ import getFavoritesListings from "@/app/actions/getFavoritesListings";
 import EmptyState from "@/components/EmptyState";
 import Container from "@/components/Container";
 import FavoritesClient from "@/components/favorites/FavoritesClient";
+import ClientOnly from "@/components/ClientOnly";
 
 export default async function FavoritesPage() {
   const currentUser = await getCurrentUser();
@@ -10,17 +11,21 @@ export default async function FavoritesPage() {
 
   if (listings.length === 0)
     return (
-      <EmptyState
-        title="No favorites found"
-        subtitle="Looks like you have no favorite listings."
-      />
+      <ClientOnly>
+        <EmptyState
+          title="No favorites found"
+          subtitle="Looks like you have no favorite listings."
+        />
+      </ClientOnly>
     );
 
   return (
-    <main>
-      <Container>
-        <FavoritesClient listings={listings} currentUser={currentUser} />
-      </Container>
-    </main>
+    <ClientOnly>
+      <main>
+        <Container>
+          <FavoritesClient listings={listings} currentUser={currentUser} />
+        </Container>
+      </main>
+    </ClientOnly>
   );
 }

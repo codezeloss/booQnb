@@ -22,28 +22,31 @@ export default function ReservationClient({
   const [deletingId, setDeletingId] = useState("");
 
   // ** Cancel handler
-  const onCancel = useCallback((id: string) => {
-    setDeletingId(id);
+  const onCancel = useCallback(
+    (id: string) => {
+      setDeletingId(id);
 
-    axios
-      .delete(`/api/reservations/${id}`)
-      .then(() => {
-        toast({
-          description: "Reservation cancelled successfully",
+      axios
+        .delete(`/api/reservations/${id}`)
+        .then(() => {
+          toast({
+            description: "Reservation cancelled successfully",
+          });
+          router.refresh();
+        })
+        .catch((e) => {
+          toast({
+            variant: "destructive",
+            title: "Oups! Something went wrong!!",
+            description: "Please try again",
+          });
+        })
+        .finally(() => {
+          setDeletingId("");
         });
-        router.refresh();
-      })
-      .catch((e) => {
-        toast({
-          variant: "destructive",
-          title: "Oups! Something went wrong!!",
-          description: "Please try again",
-        });
-      })
-      .finally(() => {
-        setDeletingId("");
-      });
-  }, []);
+    },
+    [router, toast]
+  );
 
   return (
     <div>

@@ -3,6 +3,7 @@ import EmptyState from "@/components/EmptyState";
 import Container from "@/components/Container";
 import getListings from "@/app/actions/getListings";
 import PropertiesClient from "@/components/properties/PropertiesClient";
+import ClientOnly from "@/components/ClientOnly";
 
 export default async function PropertiesPage() {
   const currentUser = await getCurrentUser();
@@ -19,10 +20,12 @@ export default async function PropertiesPage() {
     );
 
   return (
-    <main>
-      <Container>
-        <PropertiesClient listings={listings} currentUser={currentUser} />
-      </Container>
-    </main>
+    <ClientOnly>
+      <main>
+        <Container>
+          <PropertiesClient listings={listings} currentUser={currentUser} />
+        </Container>
+      </main>
+    </ClientOnly>
   );
 }
