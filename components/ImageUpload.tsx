@@ -38,7 +38,7 @@ export default function ImageUpload({ value, onChange }: Props) {
           }
           return (
             <div
-              className="relative w-full cursor-pointer transition hover:opacity-70 border-dashed border-2 p-20 border-neutral-300 flex justify-center gap-4"
+              className="relative w-full h-[350px] cursor-pointer transition hover:opacity-70 border-dashed border-2 p-20 border-neutral-300 flex justify-center gap-4"
               onClick={handleOnClick}
             >
               <div className="w-fit flex items-center gap-x-2">

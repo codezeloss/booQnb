@@ -1,14 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import Avatar from "@/components/Avatar";
-import { MenuIcon } from "lucide-react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import Image from "next/image";
 import ProfileMenu from "@/components/navbar/ProfileMenu";
 import { SignInFormModal } from "@/components/modals/SignInFormModal";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,8 +11,8 @@ import {
   onClickRegisterOpen,
 } from "@/redux/modalSlice";
 import { SignUpFormModal } from "@/components/modals/SignUpFormModal";
-import { User } from "@prisma/client";
 import { SafeUser } from "@/types/SafeUser";
+import { useRouter } from "next/navigation";
 
 interface Props {
   currentUser?: SafeUser | null;
@@ -28,6 +20,7 @@ interface Props {
 
 export default function UserMenu({ currentUser }: Props) {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   // ** RTK - Modal
   const { isLoginModalOpen, isRegisterModalOpen } = useSelector(
@@ -48,7 +41,18 @@ export default function UserMenu({ currentUser }: Props) {
 
       <div className="flex items-center gap-x-4">
         {currentUser ? (
-          <ProfileMenu user={currentUser} />
+          <div className="flex items-center gap-x-2">
+            <Button
+              className="w-fit hidden md:flex"
+              variant="ghost"
+              size="sm"
+              onClick={() => router.push("/add-listing")}
+              type="button"
+            >
+              BooQnb my Home
+            </Button>
+            <ProfileMenu user={currentUser} />
+          </div>
         ) : (
           <div className="flex items-center gap-x-2">
             <Button

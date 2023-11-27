@@ -21,20 +21,22 @@ interface Props {
 
 export default function Map({ center }: Props) {
   return (
-    <MapContainer
-      center={(center as L.LatLngExpression) || [51, -0.09]}
-      zoom={center ? 4 : 2}
-      scrollWheelZoom={false}
-      className="h-[35vh] rounded-md border"
-    >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {center && (
-        <Marker position={center as L.LatLngExpression}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
-      )}
-    </MapContainer>
+    <div>
+      <MapContainer
+        center={(center as L.LatLngExpression) || [51, -0.09]}
+        zoom={center ? 4 : 2}
+        scrollWheelZoom={false}
+        className="w-full h-[35vh] rounded-md border"
+      >
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        {center && (
+          <Marker position={center as L.LatLngExpression}>
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        )}
+      </MapContainer>
+    </div>
   );
 }

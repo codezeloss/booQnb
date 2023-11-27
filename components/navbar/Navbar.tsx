@@ -7,17 +7,12 @@ import { ModeToggle } from "@/components/ModeToggle";
 import UserMenu from "@/components/navbar/UserMenu";
 import { SafeUser } from "@/types/SafeUser";
 import Categories from "@/components/navbar/Categories";
-import { onClickRentModalOpen } from "@/redux/modalSlice";
-import { Button } from "@/components/ui/button";
-import { useDispatch } from "react-redux";
 
 interface Props {
   currentUser?: SafeUser | null;
 }
 
 export default function Navbar({ currentUser }: Props) {
-  const dispatch = useDispatch();
-
   return (
     <header className="fixed w-full z-10 shadow-sm bg-white dark:bg-background">
       <div className="py-4 border-b">
@@ -27,15 +22,6 @@ export default function Navbar({ currentUser }: Props) {
             <Search />
 
             <div className="flex gap-x-4 items-center">
-              <Button
-                className="w-fit hidden md:flex"
-                variant="ghost"
-                size="sm"
-                onClick={() => dispatch(onClickRentModalOpen())}
-                type="button"
-              >
-                BooQnb my Home
-              </Button>
               <UserMenu currentUser={currentUser} />
               <ModeToggle />
             </div>
