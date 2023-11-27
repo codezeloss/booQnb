@@ -194,6 +194,9 @@ export default function AddListingPage() {
 
           <hr />
 
+          <div>
+            {location !== "" && <Map center={getByValue(location)?.latlng} />}
+          </div>
           <FormField
             control={form.control}
             name="location"
@@ -235,10 +238,6 @@ export default function AddListingPage() {
               </FormItem>
             )}
           />
-
-          <div>
-            {location !== "" && <Map center={getByValue(location)?.latlng} />}
-          </div>
 
           <hr />
 
