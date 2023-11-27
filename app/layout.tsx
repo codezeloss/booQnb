@@ -20,12 +20,15 @@ export const metadata: Metadata = {
     "BooQnb!! The best & the number one online marketplace for short/long-term homestays and experiences",
 };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function RootLayout({
   children,
 }: {
   children: ReactNode;
 }) {
-  const currentUser: User | any = await getCurrentUser();
+  const currentUser = await getCurrentUser();
 
   return (
     <ReduxProvider>
