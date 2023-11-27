@@ -27,7 +27,7 @@ export default function ImageUpload({ value, onChange }: Props) {
     <>
       <CldUploadWidget
         onUpload={handleUpload}
-        uploadPreset="bqktyr06"
+        uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
         options={{
           maxFiles: 1,
         }}
