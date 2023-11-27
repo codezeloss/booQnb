@@ -166,13 +166,15 @@ export default function SearchModal({ isOpen, onClose }: Props) {
     step,
     onNext,
     params,
-    dispatch,
-    router,
+    location?.value,
     guestCount,
     roomCount,
     bathroomCount,
-    location,
-    dateRange,
+    dateRange.startDate,
+    dateRange.endDate,
+    form,
+    dispatch,
+    router,
   ]);
 
   // ** Labels

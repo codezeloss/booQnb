@@ -10,7 +10,7 @@ export default function Avatar({ src }: Props) {
   return (
     <>
       <Image
-        src={src}
+        src={src ? src : "/images/placeholder.jpg"}
         alt="User Avatar"
         className="rounded-full border cursor-pointer"
         width={35}

@@ -115,7 +115,7 @@ export default function AddListingPage() {
 
   const Map = useMemo(
     () => dynamic(() => import("@/components/Map"), { ssr: false }),
-    [location]
+    []
   );
 
   // ** Handle Form submission

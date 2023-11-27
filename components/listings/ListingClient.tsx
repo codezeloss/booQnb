@@ -93,7 +93,16 @@ export default function ListingClient({
       .finally(() => {
         setIsLoading(false);
       });
-  }, [currentUser, dateRange, dispatch, listing?.id, toast, totalPrice]);
+  }, [
+    currentUser,
+    dateRange.endDate,
+    dateRange.startDate,
+    dispatch,
+    listing?.id,
+    router,
+    toast,
+    totalPrice,
+  ]);
 
   // ** Notice everytime we do a change in the calendar
   useEffect(() => {
