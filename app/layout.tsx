@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
 import { ReduxProvider } from "@/app/store/provider";
 import getCurrentUser from "@/app/actions/getCurrentUser";
-import { User } from "@prisma/client";
+import Footer from "@/components/Footer";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -41,8 +41,11 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             <Toaster />
-            <Navbar currentUser={currentUser} />
-            <div className="pt-28 pb-20">{children}</div>
+            <div className="w-full h-full min-h-screen flex flex-col justify-between">
+              <Navbar currentUser={currentUser} />
+              <div className="pt-28 pb-20">{children}</div>
+              <Footer />
+            </div>
           </ThemeProvider>
         </body>
       </html>
