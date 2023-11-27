@@ -19,7 +19,10 @@ export default function Navbar({ currentUser }: Props) {
         <Container>
           <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
             <Logo />
-            <Search />
+
+            <div className="hidden md:flex">
+              <Search />
+            </div>
 
             <div className="flex gap-x-4 items-center">
               <UserMenu currentUser={currentUser} />

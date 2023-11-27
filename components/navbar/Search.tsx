@@ -40,12 +40,12 @@ export default function Search() {
 
       return `${diff} Days`;
     }
-    return "Anywhere";
+    return "Anytime";
   }, [startDate, endDate]);
 
   const guestLabel = useMemo(() => {
     if (guestCount) return `${guestCount} Guests`;
-    return "Add Guests";
+    return "Guests";
   }, [guestCount]);
 
   // ** RTK - Modal
@@ -59,18 +59,18 @@ export default function Search() {
       />
 
       <div
-        className="border w-full md:w-auto py-2 rounded-md shadow-sm transition cursor-pointer"
+        className="border w-full md:w-auto py-1 md:py-2 px-2 rounded-md shadow-sm transition cursor-pointer"
         onClick={() => dispatch(onClickSearchModalOpen())}
       >
-        <div className="flex items-center justify-between">
-          <div className="text-sm font-semibold px-6 hover:font-bold">
+        <div className="grid grid-cols-3 items-center justify-center text-center">
+          <div className="text-xs md:text-sm font-semibold hover:font-bold">
             {locationLabel}
           </div>
-          <div className="hidden sm:block text-sm font-semibold px-6 border-x flex-1 text-center hover:font-bold">
+          <div className="text-xs md:text-sm font-semibold border-x flex-1 text-center hover:font-bold">
             {durationLabel}
           </div>
-          <div className="text-sm pl-6 pr-2 text-gray-600 flex flex-row items-center gap-3">
-            <div className="hidden sm:block hover:font-bold">{guestLabel}</div>
+          <div className="text-xs md:text-sm pl-6 pr-2 text-gray-600 flex flex-row items-center mx-auto gap-3">
+            <div className="hover:font-bold">{guestLabel}</div>
             <div className="p-2 bg-black dark:bg-white dark:text-black text-white rounded-full">
               <SearchIcon size={16} />
             </div>

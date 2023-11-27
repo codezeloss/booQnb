@@ -33,17 +33,19 @@ export default function Counter({ title, subtitle, value, onChange }: Props) {
         <Button
           size="icon"
           variant="ghost"
-          className="w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-300 hover:opacity-80 transition"
+          className="w-8 h-8 rounded-full border border-neutral-300 dark:border-muted-foreground flex items-center justify-center text-neutral-300 dark:text-muted-foreground hover:opacity-80 transition"
           onClick={onReduce}
           type="button"
         >
           <MinusIcon size={18} />
         </Button>
-        <div className="text-lg text-neutral-300">{value}</div>
+        <div className="text-lg text-neutral-300 dark:text-muted-foreground">
+          {value}
+        </div>
         <Button
           size="icon"
           variant="ghost"
-          className="w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-300 hover:opacity-80 transition"
+          className="w-8 h-8 rounded-full border border-neutral-300 dark:border-muted-foreground flex items-center justify-center text-neutral-300 dark:text-muted-foreground hover:opacity-80 transition"
           onClick={onAdd}
           type="button"
         >

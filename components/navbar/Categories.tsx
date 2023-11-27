@@ -20,6 +20,7 @@ import { GiMountainCave } from "react-icons/gi";
 import { TbBeach } from "react-icons/tb";
 import { LiaSkiingSolid } from "react-icons/lia";
 import { FaSwimmingPool } from "react-icons/fa";
+import Search from "@/components/navbar/Search";
 
 export const categories = [
   {
@@ -113,6 +114,10 @@ export default function Categories() {
 
   return (
     <Container>
+      <div className="w-full pt-4 flex md:hidden">
+        <Search />
+      </div>
+
       <div className="pt-4 flex items-center justify-between overflow-x-auto">
         {categories.map((item, index) => (
           <CategoryBox

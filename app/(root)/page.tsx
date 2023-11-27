@@ -26,7 +26,7 @@ export default async function Home({ searchParams }: Props) {
     <ClientOnly>
       <main className="">
         <Container>
-          <div className="pt-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="pt-40 md:pt-28 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {listings &&
               listings.map((listing: SafeListing, index) => {
                 return (
