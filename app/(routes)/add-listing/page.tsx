@@ -126,10 +126,11 @@ export default function AddListingPage() {
 
       if (response.data) {
         form.reset();
+        router.push("/");
+        router.refresh();
         toast({
           description: "Listing created successfully!",
         });
-        router.refresh();
       }
 
       setIsLoading(false);

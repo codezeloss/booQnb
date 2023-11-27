@@ -31,7 +31,7 @@ export default function ListingHead({
         title={title}
         subtitle={`${location?.region}, ${location?.label}`}
       />
-      <div className="relative w-full h-[60vh] overflow-hidden rounded-xl">
+      <div className="relative w-full h-[40vh] sm:h-[50vh] md:h-[60vh] overflow-hidden rounded-xl">
         <Image
           className="object-cover w-full"
           src={imageSrc}
